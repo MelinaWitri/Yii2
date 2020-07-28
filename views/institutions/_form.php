@@ -6,6 +6,7 @@ use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use app\models\Country;
 use app\models\Province;
+use kartik\select2\Select2
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Institutions */
@@ -18,7 +19,7 @@ use app\models\Province;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'logo')->fileInput() ?>
+    <?= $form->field($model, 'logo')->fileInput() ?>  
 
     <?= $form->field($model, 'telephone')->textInput(['maxlength' => true]) ?>
 
@@ -35,9 +36,9 @@ use app\models\Province;
     	[
             'prompt'=>'Select Country',
             'onchange'=>'
-                $.post( "index.php?r=province/lists&id='.'"+$(this).val(),function(data)
-               { $( "select#institutions-province" ).html(data);
-           });'
+                $.post("index.php?r=province/lists&id='.'"+$(this).val(),function(data)
+                { $("select#institutions-province" ).html(data);
+            });'
         ]
     ); ?>
 
@@ -85,3 +86,18 @@ use app\models\Province;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php 
+$script = <<< JS
+$('#country').change(function(){
+	var country = $(this).val();
+ 
+	$.get('index.php?r=country/get-country_code',{ countryId : countryId },function(data){
+		var data = $.parseJSON(data);
+		$('#institutions-country_code').attr('value',data.country_code);
+	});
+});
+ 
+JS;
+$this->registerJs($script);
+?>

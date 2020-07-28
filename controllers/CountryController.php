@@ -8,7 +8,7 @@ use app\models\CountrySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\helpers\Json;
 /**
  * CountryController implements the CRUD actions for Country model.
  */
@@ -93,6 +93,12 @@ class CountryController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+
+    public function actionGetCountry_Code($countryId){
+        $location = Country::findOne($countryId);
+        echo Json::encode($country);
     }
 
     /**

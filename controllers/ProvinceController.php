@@ -119,13 +119,13 @@ class ProvinceController extends Controller
             ->all();
         if($countProvince > 0)
         {
-            foreach ($provinces as $province) {
-                echo "<option value'" .$province->province_id. "'>".$province->province_name."</option>";
+            foreach ($province as $province) {
+                echo "<option value'" .$province->country_id. "'>".$province->province_name."</option>";
             }
         }
         else
         {
-            echo "<option> - </option>";
+            echo "<option>-</option>";
         }
     }
 

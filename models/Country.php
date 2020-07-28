@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $country
+ * @property int $country_code
  */
 class Country extends \yii\db\ActiveRecord
 {
@@ -26,10 +27,10 @@ class Country extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'country'], 'required'],
-            [['id'], 'default', 'value' => null],
-            [['id'], 'integer'],
-            [['country'], 'string'],
+            [['id', 'country', 'country_code'], 'required'],
+            [['id', 'country_code'], 'default', 'value' => null],
+            [['id', 'country_code'], 'integer'],
+            [['country'], 'string', 'max' => 225],
             [['id'], 'unique'],
         ];
     }
@@ -42,6 +43,7 @@ class Country extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'country' => 'Country',
+            'country_code' => 'Country Code',
         ];
     }
 }
