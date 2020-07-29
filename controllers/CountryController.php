@@ -95,6 +95,11 @@ class CountryController extends Controller
         ]);
     }
 
+    public function actionLists($id){
+        $province = Country::findOne($id);
+        
+        echo $province->country_code;
+    }
 
     public function actionGetCountry_Code($countryId){
         $location = Country::findOne($countryId);

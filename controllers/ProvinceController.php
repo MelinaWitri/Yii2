@@ -112,15 +112,15 @@ class ProvinceController extends Controller
 
     public function actionLists($id){
         $countProvince = Province::find()
-            ->where(['country'=>$id])
+            ->where(['country_id'=>$id])
             ->count();
         $province = Province::find()
-            ->where(['country'=>$id])
+            ->where(['country_id'=>$id])
             ->all();
         if($countProvince > 0)
         {
             foreach ($province as $province) {
-                echo "<option value'" .$province->country_id. "'>".$province->province_name."</option>";
+                echo "<option value='" .$province->id. "'>".$province->province."</option>";
             }
         }
         else

@@ -38,12 +38,16 @@ use kartik\select2\Select2
             'onchange'=>'
                 $.post("index.php?r=province/lists&id='.'"+$(this).val(),function(data)
                 { $("select#institutions-province" ).html(data);
+                });
+
+                    $.post("index.php?r=country/lists&id='.'"+$(this).val(),function(data)
+                    { $("#institutions-country_code" ).val(data);
             });'
         ]
     ); ?>
 
     <?= $form->field($model, 'country_code')->textInput(['maxlength' => true]) ?>
-  
+
     <?= $form->field($model, 'province')->dropDownList(
     	ArrayHelper::map(Province::find()->all(),'id','province'),
     	[
