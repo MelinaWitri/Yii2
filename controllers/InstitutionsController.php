@@ -67,10 +67,11 @@ class InstitutionsController extends Controller
     {
         $model = new Institutions();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-
-            
+        if ($model->load(Yii::$app->request->post())) {
+        $imageFile = UploadedFile::getInstance($model,'logo');
+        $model->logo =$imageFile;
+        $model->save(false);
+        $imageFile->saveAs(Yii::$app->basePath . "/web/uploads/" . $model->logo =$imageFile);    
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

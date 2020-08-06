@@ -53,7 +53,7 @@ class Institutions extends \yii\db\ActiveRecord
             [['postal_code', 'country', 'province', 'current_safety', 'current_security', 'current_usage', 'current_value', 'number_building', 'number_level', 'number_room'], 'integer'],
             [['createdAt'], 'required'],
             [['createdAt', 'updatedAt'], 'safe'],
-            [['file'],'file'],
+            [['logo'],'file','extensions'=>'jpg,png,jpeg','skipOnEmpty'=>false],
             [['name', 'logo', 'telephone', 'fax', 'email', 'address'], 'string', 'max' => 255],
             [['country_code'], 'string', 'max' => 5],
         ];

@@ -31,7 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'logo',
+            [
+                'attribute' => 'logo',
+                'value' => 'https://localhost/yii2_project/web/uploads/'.$model->logo, 
+                'format' => ['image',['width'=>'200', 'height' => '160']]
+            ],
             'telephone',
             'fax',
             'email:email',
