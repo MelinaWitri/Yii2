@@ -6,7 +6,7 @@ use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use app\models\Country;
 use app\models\Province;
-use kartik\select2\Select2
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Institutions */
@@ -40,9 +40,9 @@ use kartik\select2\Select2
                 { $("select#institutions-province" ).html(data);
                 });
 
-                    $.post("index.php?r=country/lists&id='.'"+$(this).val(),function(data)
-                    { $("#institutions-country_code" ).val(data);
-            });'
+                $.post("index.php?r=country/lists&id='.'"+$(this).val(),function(data)
+                { $("#institutions-country_code" ).val(data);
+                });'
         ]
     ); ?>
 

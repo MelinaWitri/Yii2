@@ -1,10 +1,11 @@
 <?php
 
+use app\models\Departments;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Institutions;
-use dosamigos\datepicker\DatePicker
+use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Divisions */
@@ -21,10 +22,23 @@ use dosamigos\datepicker\DatePicker
     <?= $form->field($model, 'div_desc')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'institution_id')->dropDownList( 
-        ArrayHelper::map(Institutions::find()->all(),'id','id'),
+        ArrayHelper::map(Institutions::find()->all(),'id','name'),[
+            'prompt'=>'Select Institution',
+            'onchange'=>'
+            $.post("index.php?r=departments/lists&id='.'"+$(this).val(),function(data)
+            { $("select#divisions-dep_id" ).html(data);
+            });'
+        ]
         ) ?>
 
-    <?= $form->field($model, 'dep_id')->textInput() ?>
+<?= $form->field($model, 'dep_id')->dropDownList(
+    	ArrayHelper::map(Departments::find()->all(),'id','id'),
+    	[
+            'prompt'=>'Select Departments',
+        ]
+    ) ?>
+
+    <?php // $form->field($model, 'dep_id')->textInput() ?>
 
     <?= $form->field($model, 'createdAt')->widget(
     DatePicker::className(), [

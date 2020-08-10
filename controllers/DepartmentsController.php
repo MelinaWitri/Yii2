@@ -75,6 +75,25 @@ class DepartmentsController extends Controller
         ]);
     }
 
+
+    public function actionLists($id){
+        $countDept = Departments::find()
+            ->where(['institution_id'=>$id])
+            ->count();
+        $departement = Departments::find()
+            ->where(['institution_id'=>$id])
+            ->all();
+        if($countDept > 0)
+        {
+            foreach ($departement as $dept) {
+                echo "<option value='" .$dept->id. "'>".$dept->dep_name."</option>";
+            }
+        }
+        else
+        {
+            echo "<option>-</option>";
+        }
+    }
     /**
      * Updates an existing Departments model.
      * If update is successful, the browser will be redirected to the 'view' page.

@@ -35,7 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'current_safety',
             'current_security',
             'current_productivity',
-            'image',
+            [
+                'attribute' => 'image',
+                'value' => 'https://localhost/yii2_project/web/uploads/level/'.$model->image, 
+                'format' => ['image',['width'=>'200', 'height' => '160']]
+            ],
             'safety_feature',
             'security_feature',
             'material_floor',

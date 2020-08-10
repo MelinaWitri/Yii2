@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Institutions;
-use dosamigos\datepicker\DatePicker
+use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Levels */
@@ -15,7 +15,7 @@ use dosamigos\datepicker\DatePicker
 
 <div class="levels-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'level_name')->textInput(['maxlength' => true]) ?>
 

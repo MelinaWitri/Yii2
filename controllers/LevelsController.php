@@ -6,6 +6,7 @@ use Yii;
 use app\models\Levels;
 use app\models\LevelsSearch;
 use yii\helpers\ArrayHelper;
+use yii\web\UploadedFile;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -67,6 +68,13 @@ class LevelsController extends Controller
     {
         $model = new Levels();
 
+        if ($model->load(Yii::$app->request->post())) {
+        $imageFile = UploadedFile::getInstance($model,'image');
+        $model->image =$imageFile;
+        $model->save(false);
+        $imageFile->saveAs(Yii::$app->basePath . "/web/uploads/level/" . $model->image =$imageFile);    
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
